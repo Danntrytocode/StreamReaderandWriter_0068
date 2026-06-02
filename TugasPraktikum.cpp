@@ -125,4 +125,15 @@ public:
         }
     }
 
+    //delete tuk Menghapus data berdasarkan nomor urut
+    void hapusBarang(size_t nomor) {
+        vector<string> data = bacaSemuaData();
+        if (nomor > 0 && nomor <= data.size()) {
+            data.erase(data.begin() + nomor - 1);
+            tulisSemuaData(data);
+            cout << "[INFO] Data barang berhasil dihapus!\n";
+        } else {
+            cout << "[ERROR] Nomor barang tidak valid!\n";
+        }
+    }
 };
