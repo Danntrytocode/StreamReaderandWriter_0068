@@ -101,4 +101,16 @@ public:
         cout << "============================================\n";
     }
 
-}
+    //create > Menambahkan data baru
+    void tambahBarang(const string& barangBaru) {
+        ofstream file(namaFile, ios::app); // Mode append
+        if (file.is_open()) {
+            file << barangBaru << "\n";
+            file.close();
+            cout << "[INFO] Barang berhasil ditambahkan ke gudang!\n";
+        } else {
+            cout << "[ERROR] Gagal membuka file gudang!\n";
+        }
+    }
+
+};
