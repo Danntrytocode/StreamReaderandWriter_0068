@@ -137,3 +137,11 @@ public:
         }
     }
 };
+
+int main() {
+    int pilihan;
+    TokoElektronik toko;
+    GudangManager gudang;
+    string inputString;
+    size_t nomorBarang;
+}
