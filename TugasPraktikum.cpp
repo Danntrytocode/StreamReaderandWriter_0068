@@ -56,3 +56,33 @@ public:
     }
 };
 
+//klass tambahan untuk membedakan logika Manajemen File Gudang
+class GudangManager {
+private:
+    string namaFile = "gudang.txt";
+
+    //fungsi private untuk membaca seluruh baris file ke dalam vector
+    vector<string> bacaSemuaData() {
+        vector<string> data;
+        ifstream file(namaFile);
+        string baris;
+        if (file.is_open()) {
+            while (getline(file, baris)) {
+                data.push_back(baris);
+            }
+            file.close();
+        }
+        return data;
+    }
+
+    //fungsi private untuk menimpa file dengan data baru
+    void tulisSemuaData(const vector<string>& data) {
+        ofstream file(namaFile);
+        if (file.is_open()) {
+            for (const auto& item : data) {
+                file << item << "\n";
+            }
+            file.close();
+        }
+    }
+}
