@@ -30,3 +30,29 @@ Pastikan sistem menu, operasi file (CRUD), dan penangkapan error array terintegr
 #include <vector>
 
 using namespace std;
+//klaas induk/utaama
+class TokoElektronik {
+private:
+    //Atribut Private: Array berkapasitas 3 elemen
+    array<string, 3> etalase;
+
+public:
+    //Constructor Mengisi data awal secara otomatis
+    TokoElektronik() {
+        etalase = {"Laptop Ragnamok", "iPhone 13 Pro Maxxing", "Dumb TV Samsung"};
+    }
+
+    //Method Public dan exception Handling
+    string ambilBarang(size_t nomorRak) {
+        try {
+            //out_of_range jika index melebihi kapasitas
+            return etalase.at(nomorRak);
+        } 
+        catch (const out_of_range& e) {
+            //catch error bawaan dan melempar ulang pesan error kustom
+            string pesanError = "Gagal Mengambil Barang : Rak nomor " + to_string(nomorRak) + " kosong atau tidak tersedia!";
+            throw pesanError; 
+        }
+    }
+};
+
