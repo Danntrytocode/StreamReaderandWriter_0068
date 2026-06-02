@@ -85,4 +85,20 @@ private:
             file.close();
         }
     }
+
+public:
+    //Read > Menampilkan daftar barang dari file txt
+    void tampilkanGudang() {
+        cout << "\n=== Daftar Barang di Gudang (gudang.txt) ===\n";
+        vector<string> data = bacaSemuaData();
+        if (data.empty()) {
+            cout << "(Gudang masih kosong)\n";
+        } else {
+            for (size_t i = 0; i < data.size(); ++i) {
+                cout << i + 1 << ". " << data[i] << "\n";
+            }
+        }
+        cout << "============================================\n";
+    }
+
 }
