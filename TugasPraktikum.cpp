@@ -144,4 +144,79 @@ int main() {
     GudangManager gudang;
     string inputString;
     size_t nomorBarang;
+
+    do {
+        //menampilkan isi file gudang.txt saat menu dibuka
+        gudang.tampilkanGudang();
+
+        cout << "========Menu Utama Manajemen Gibran Jaya========";
+        cout << "1. Tambah Barang Baru (Create)\n";
+        cout << "2. Update Data Barang (Update)\n";
+        cout << "3. Hapus Data Barang (Delete)\n";
+        cout << "4. Simulasi Etalase (Test Exception Handling)\n";
+        cout << "0. Exit\n";
+        cout << "Pilih menu (0-4): ";
+        cout << "=================================================" << endl;
+        
+        if (!(cin >> pilihan)) {
+            cout << "Input  Invalid. Pilih masukkan angka.\n";
+            cin.clear();
+            cin.ignore(10000, '\n');
+            continue;
+        }
+
+        switch (pilihan) {
+            case 1:
+                cout << "Masukkan nama barang baru: ";
+                gudang.tambahBarang(inputString);
+                break;
+            case 2:
+                cout << "Masukkan nomor urut barang yang ingin diubah: ";
+                cin >> nomorBarang;
+                cout << "Masukkan nama barang pengganti: ";
+                gudang.updateBarang(nomorBarang, inputString);
+                break;
+            case 3:
+                cout << "Masukkan nomor urut barang yang ingin dihapus: ";
+                cin >> nomorBarang;
+                gudang.hapusBarang(nomorBarang);
+                break;
+            case 4:
+                cout << "\n--- Menjalankan Simulasi Etalase ---\n";
+                //skenario 1: Rak indeks ke-1 (Harus sukses)
+                try {
+                    cout << "> Skenario 1 (Akses indeks 1)...\n";
+                    string barang = toko.ambilBarang(1);
+                    cout << "Sukses: Mendapatkan barang [" << barang << "]\n";
+                } 
+                catch (const string& errorMsg) {
+                    //catch error kustom berupa tipe string
+                    cout << "Error: " << errorMsg << "\n";
+                }
+
+                //soekarno 2: Rak indeks ke-5 (Harus gagal)
+                try {
+                    cout << "\n> soekarno 2 (Akses indeks 5)...\n";
+                    string barang = toko.ambilBarang(5);
+                    cout << "Sukses: Mendapatkan barang [" << barang << "]\n";
+                } 
+                catch (const string& errorMsg) {
+                    //catch error kustom berupa tipe string
+                    cout << errorMsg << "\n";
+                }
+                
+                cout << "------------------------------------\n";
+                cout << "Tekan Enter untuk melanjutkan...";
+                cin.ignore();
+                cin.get();
+                break;
+            case 0:
+                cout << "Keluar dari program. Thankyou!\n";
+                break;
+            default:
+                cout << "Pilihan tidak tersedia. Silakan Try lagi.\n";
+        }
+    } while (pilihan != 0);
+
+    return 0;
 }
