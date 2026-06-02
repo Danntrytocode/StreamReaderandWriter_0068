@@ -113,4 +113,16 @@ public:
         }
     }
 
+    //update > Mengubah data berdasarkan nomor urut
+    void updateBarang(size_t nomor, const string& barangBaru) {
+        vector<string> data = bacaSemuaData();
+        if (nomor > 0 && nomor <= data.size()) {
+            data[nomor - 1] = barangBaru;
+            tulisSemuaData(data);
+            cout << "[INFO] Data barang berhasil diperbarui!\n";
+        } else {
+            cout << "[ERROR] Nomor barang tidak valid!\n";
+        }
+    }
+
 };
